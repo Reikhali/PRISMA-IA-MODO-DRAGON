@@ -1,0 +1,6 @@
+{
+  "name": "Dragon Throne — IA do Trono do Dragão",
+  "description": "Dragon Throne AI / Dragon Prisma IA: sinais de negociação ao vivo com IA em vários períodos de tempo para Quotex, Pocket Option, IQ Option e pares de moedas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

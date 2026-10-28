@@ -1,0 +1,340 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: 'Barlow', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Cinzel', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --background: oklch(13% 0.007 285);
+  --foreground: oklch(94% 0.006 280);
+  --card: oklch(18% 0.009 285);
+  --card-foreground: oklch(95% 0.005 280);
+  --primary: oklch(47% 0.17 22);
+  --primary-foreground: oklch(98% 0.01 70);
+  --secondary: oklch(27% 0.008 285);
+  --secondary-foreground: oklch(92% 0.005 280);
+  --muted: oklch(25% 0.007 285);
+  --muted-foreground: oklch(72% 0.012 285);
+  --border: oklch(34% 0.01 285);
+  --input: oklch(29% 0.01 285);
+  --crimson: oklch(47% 0.18 22);
+  --gold: oklch(80% 0.13 82);
+  --steel: oklch(84% 0.014 260);
+  --ember: oklch(72% 0.19 45);
+  --success: oklch(74% 0.16 155);
+  --destructive: oklch(58% 0.21 25);
+
+  --gradient-panel: linear-gradient(160deg, oklch(22% 0.008 285) 0%, oklch(16% 0.006 285) 60%, oklch(19% 0.01 20) 100%);
+  --shadow-royal: 0 24px 60px -24px oklch(0% 0 0 / 0.9), 0 0 0 1px oklch(72% 0.09 78 / 0.12);
+  --shadow-ember: 0 0 40px -6px oklch(70% 0.19 45 / 0.35);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.text-steel {
+  color: var(--steel);
+}
+
+.text-ember {
+  color: var(--ember);
+}
+
+.text-success {
+  color: var(--success);
+}
+
+.text-destructive {
+  color: var(--destructive);
+}
+
+.border-gold {
+  border-color: var(--gold);
+}
+
+.border-gold\/25 {
+  border-color: oklch(80% 0.13 82 / 0.25);
+}
+
+.border-gold\/30 {
+  border-color: oklch(80% 0.13 82 / 0.3);
+}
+
+.border-gold\/50 {
+  border-color: oklch(80% 0.13 82 / 0.5);
+}
+
+.border-gold\/60 {
+  border-color: oklch(80% 0.13 82 / 0.6);
+}
+
+.bg-ember {
+  background-color: var(--ember);
+}
+
+.panel-royal {
+  background-image: var(--gradient-panel);
+  box-shadow: var(--shadow-royal);
+  border-radius: 0.75rem;
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  backdrop-filter: blur(10px) saturate(120%);
+  border: 1px solid oklch(72% 0.09 78 / 0.22);
+  position: relative;
+}
+
+.panel-royal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(oklch(100% 0 0 / 0.07) 0%, transparent 22% 78%, oklch(72% 0.19 45 / 0.05) 100%);
+}
+
+.hairline-gold {
+  background: linear-gradient(90deg, transparent, oklch(78% 0.12 82 / 0.65), oklch(50% 0.18 22 / 0.5), transparent);
+}
+
+/* Animations */
+@keyframes dragon-breathe {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.025) translateY(-6px);
+  }
+}
+
+@keyframes wing-sway {
+  0%, 100% {
+    transform: perspective(900px) rotateY(-2.5deg) scaleX(1);
+  }
+  50% {
+    transform: perspective(900px) rotateY(2.5deg) scaleX(1.02);
+  }
+}
+
+@keyframes eye-glow {
+  0%, 100% {
+    opacity: 0.45;
+    filter: blur(6px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(10px);
+  }
+}
+
+@keyframes ember-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0) scale(0.6);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-320px) translateX(var(--drift, 20px)) scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes smoke-drift {
+  0% {
+    opacity: 0.25;
+    transform: translateX(-6%) scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: translateX(6%) scale(1.08);
+  }
+  100% {
+    opacity: 0.25;
+    transform: translateX(-6%) scale(1);
+  }
+}
+
+@keyframes sheen {
+  0% {
+    background-position: -180% 0;
+  }
+  100% {
+    background-position: 280% 0;
+  }
+}
+
+@keyframes fire-flash {
+  0% {
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fire-cone {
+  0% {
+    opacity: 0;
+    transform: scale(0.15) translateY(-8%);
+  }
+  22% {
+    opacity: 1;
+    transform: scale(0.7) translateY(0);
+  }
+  60% {
+    opacity: 0.9;
+    transform: scale(1.25) translateY(4%);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.8) translateY(8%);
+  }
+}
+
+@keyframes fire-core {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.2);
+  }
+}
+
+@keyframes fire-smoke {
+  0% {
+    opacity: 0;
+    transform: translateY(6%) scale(0.9);
+  }
+  40% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10%) scale(1.25);
+  }
+}
+
+@keyframes spark-fly {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(1);
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--sx, 0), var(--sy, 40vh)) scale(0.3);
+    opacity: 0;
+  }
+}
+
+@keyframes screen-shake {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  15% {
+    transform: translate(-3px, 2px);
+  }
+  30% {
+    transform: translate(4px, -2px);
+  }
+  45% {
+    transform: translate(-3px, -1px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(-1px, 0);
+  }
+}
+
+@keyframes signal-reveal {
+  0% {
+    opacity: 0;
+    filter: brightness(2.2) saturate(1.6);
+    transform: translateY(10px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    filter: none;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-breathe {
+  animation: 7s ease-in-out infinite dragon-breathe;
+}
+
+.animate-wing {
+  animation: 6s ease-in-out infinite wing-sway;
+}
+
+.animate-eye {
+  animation: 3.2s ease-in-out infinite eye-glow;
+}
+
+.animate-smoke {
+  animation: 14s ease-in-out infinite smoke-drift;
+}
+
+.animate-sheen {
+  background-size: 200% 100%;
+  animation: 3.5s linear infinite sheen;
+}
+
+.animate-screen-shake {
+  animation: 0.5s ease-in-out screen-shake;
+}
+
+.animate-signal-reveal {
+  animation: 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards signal-reveal;
+}
+
+.animate-fire-flash {
+  animation: 1.8s ease-out forwards fire-flash;
+}
+
+.animate-fire-cone {
+  animation: 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards fire-cone;
+}
+
+.animate-fire-core {
+  animation: 1.5s ease-out forwards fire-core;
+}
+
+.animate-fire-smoke {
+  animation: 2s ease-out forwards fire-smoke;
+}
